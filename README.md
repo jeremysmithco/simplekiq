@@ -10,13 +10,7 @@ Add this line to your application's Gemfile:
 gem "simplekiq"
 ```
 
-Note that this gem requires you be a Sidekiq Pro paid subscriber to be able to use it, so after following the installation docs for getting the private gem configured with your system, ensure you have `sidekiq-pro` at version `~> 5.0.0` or higher and that it's being required:
-
-```ruby
-gem "sidekiq-pro", "~> 5.0.0"
-```
-
-And then execute:
+Note that this gem requires you be a Sidekiq Pro paid subscriber to be able to use it, so after following the installation docs for getting the private gem configured with your system, ensure you have access to `sidekiq-pro` at version `~> 5.0.0` to satisfy the dependency requirements specified by this gem and then execute:
 
     $ bundle install
 
@@ -105,17 +99,15 @@ The crux of the problem was that each job was highly coupled to its position in 
 
 ## Versioning
 
-This project follows semantic versioning. At time of writing it is sitting at 0.0.1 until its integration with the application it was extracted from is confirmed to be stable. Once confirmed it will be started off at 1.0.0 as it has otherwise been used in a production system already for some time.
+This project follows semantic versioning. At time of writing it is sitting at 0.0.3 until its integration with the application it was extracted from is confirmed to be stable. Once confirmed it will be started off at 1.0.0 as it has otherwise been used in a production system already for some time.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Note that this depends on `sidekiq-pro` which requires a [commercial license](https://sidekiq.org/products/pro.html) to install and use.
+After checking out the repo, run `bin/setup` to install the gems required for development. Note that this depends on `sidekiq-pro` which requires a [commercial license](https://sidekiq.org/products/pro.html) to install and use and may require some tweaking depending on how your system is set up to access `sidekiq-pro`. Because of our infra configurations at Doximity we also set `sidekiq-ent` as a dependency in the Gemfile but this is not needed for development, feel free to temporarily remove it during your development if you only have a license for `sidekiq-pro`. `sidekiq-ent` is not a production dependency.
 
-Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Then, run `rake ci:specs` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-TODO: Update this section with more specific/appropriate instructions once this is a public repository.
+Cutting new releases is a bit involved, but there's an internal Doximity wiki about how to conduct the process. For external contributors - don't worry about this, just get us a PR with a test that describes your fix or addition and we'll take it from there. See below.
 
 ## Contributing
 
@@ -128,4 +120,4 @@ TODO: Update this section with more specific/appropriate instructions once this 
 
 ## License
 
-The gem is licensed under an Apache 2 license. Contributors are required to sign an contributor license agreement. See LICENSE.txt and CONTRIBUTING.md for more information.
+The gem is licensed under an Apache 2 license. See LICENSE.txt and CONTRIBUTING.md for more information.
